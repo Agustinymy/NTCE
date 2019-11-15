@@ -1,0 +1,88 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        ul {
+            list-style: none;
+        }
+        .all {
+            height: 50%;
+            width: 30%;
+        }
+        .top {
+            margin-top: -48px;
+            background-color: rgb(196, 75, 75);
+            height: 48px;
+            border-color: black;
+            line-height: 48px;
+            padding-left: 15px;
+            color: white;
+            position: fixed;
+            width: 30%;
+        }
+        .mid {
+            padding: 0;
+            margin-top: 48px;
+        }
+        ul {
+            padding: 0;
+        }
+        li {
+            background-color: white;
+            padding:0px 18px;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid rgb(195, 195, 197);
+            display: flex;
+            justify-content: space-between;
+        }
+        img{
+            height: 20px;
+            padding: 15px 0;
+        }
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="all">
+    <div class="top" onclick="choose()"> 选择地区 </div>
+    <ul class="mid">
+    </ul>
+</div>
+<script>
+    function choose(){
+        var list = new XMLHttpRequest(), method = "GET", url = "https://bsbnk.com/storeApi/getCity";
+    list.open(method, url, true);
+    list.onreadystatechange = function () {
+        if (list.readyState === XMLHttpRequest.DONE && list.status === 200) {
+            //json字符转化为对象
+            let arrlist = JSON.parse(list.responseText);
+            let lists = arrlist.data;
+            console.log(lists);
+            console.log(lists[0].province);
+            var ul = document.querySelector('ul');
+            lists.forEach(item => {
+                var li=document.createElement('li');
+                ul.appendChild(li);
+                li.innerHTML=item.province;
+                var img=document.createElement("img");
+                img.src="img/jiantou.png";
+                li.appendChild(img);
+                img.onclick=function(){
+                    console.log(img.id);
+                }
+            });
+        }
+    }
+    list.send();
+    }
+    
+</script>
+</body>
+</html>

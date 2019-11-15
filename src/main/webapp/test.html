@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>省市县三级联动</title>
+    </head>
+    <body>
+        <div class="easyui-panel" style="padding:10px;">
+            <form id="logisticPointForm" method="post">
+                <div>
+                    <label>选择区域:</label>
+                    <input class="easyui-combobox" id="Province" name="Province" style="width:22%" ,  data-options="prompt:'省',required:true,editable:false,">
+                    <input class="easyui-combobox" id="City" name="City" style="width:22%" , data-options="prompt:'市',required:true,editable:false,">
+                    <input class="easyui-combobox" id="County" name="County" style="width:22%" , data-options="prompt:'区/镇',required:true,editable:false,">
+                </div>
+            </form>
+        </div>
+        <style>
+            label {
+                display: inline-block;
+                width:80px;
+            }
+            #logisticPointForm div {
+                margin-top:10px;
+                margin-bottom:10px;
+            }
+        </style>
+        
+        <script type="text/javascript" src="js/address.js"></script>
+    </body>
+</html>
